@@ -2,7 +2,7 @@ import { Op } from "sequelize";
 import {
   DinoAlreadyExistError,
   DinosaureNotFoundError,
-} from "../custom-errors/dinosaures.error";
+} from "../custom-errors/dinosaures.error.js";
 import db from "../database/index.js";
 
 const dinoService = {

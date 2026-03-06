@@ -2,11 +2,12 @@ import "dotenv/config";
 import express from "express";
 import morgan from "morgan";
 import db from "./database/index.js";
-//import router from "./router/index.js";
+import router from "./routers/index.js";
 
-await db.sequelize.authenticate();
 
-await db.sequelize.sync({ alter: true }); // ATTENTION
+//await db.sequelize.authenticate();
+
+await db.sequelize.sync({ force: true }); // ATTENTION
 
 const { APP_PORT } = process.env;
 const app = express();
@@ -17,9 +18,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(morgan("dev"));
 
-console.log("coucou");
 app.use(router);
-
 
 app.listen(APP_PORT, () => {
   console.log(`Web API available at http://localhost:${APP_PORT}`);
