@@ -3,6 +3,7 @@ import {
   DinoAlreadyExistError,
   DinosaureNotFoundError,
 } from "../custom-errors/dinosaures.error.js";
+import { Op } from "sequelize";
 import db from "../database/index.js";
 
 const dinoService = {
@@ -56,7 +57,7 @@ const dinoService = {
     return dinosaures;
   },
   delete: async (dinosaureId) => {
-    const dinosaure = await db.Dinosaure.findByPk(dinosaureId);
+    const dinosaure = await db.Dinosaures.findByPk(dinosaureId);
     if (!dinosaure) {
       throw new DinosaureNotFoundError();
     }
