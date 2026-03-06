@@ -31,5 +31,5 @@ export default {
   Dinosaures,
   Zones,
   Fossiles,
-  sequelize
+  sequelize,
 };
