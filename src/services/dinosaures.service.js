@@ -1,9 +1,9 @@
 import { Op } from "sequelize";
+import { DinosaureNotFoundError } from "../custom-errors/dinosaures.error";
 import db from "../database/index.js";
 
 const dinoService = {
   create: async () => {},
-  delete: async () => {},
   getAll: async (filter, pagination) => {
     const where = {};
 
@@ -40,6 +40,15 @@ const dinoService = {
     });
     return dinosaures;
   },
+  delete: async (dinosaureId) => {
+    const dinosaure = await db.Dinosaure.findByPk(dinosaureId);
+    if (!dinosaure) {
+      throw new DinosaureNotFoundError();
+    }
+
+    await dinosaure.destroy();
+  },
+  getAll: async () => {},
   getById: async () => {},
 };
 
