@@ -4,7 +4,6 @@ import morgan from "morgan";
 import db from "./database/index.js";
 import router from "./routers/index.js";
 
-
 //await db.sequelize.authenticate();
 
 await db.sequelize.sync({ force: true }); // ATTENTION
