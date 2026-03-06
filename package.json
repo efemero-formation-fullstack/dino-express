@@ -7,6 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "npx nodemon .\\src\\index.js"
   },
+  "simple-git-hooks": {
+    "pre-commit": "npx pretty-quick --staged"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -22,6 +25,8 @@
   "devDependencies": {
     "nodemon": "^3.1.14",
     "prettier": "^3.8.1",
-    "prettier-plugin-organize-imports": "^4.3.0"
+    "prettier-plugin-organize-imports": "^4.3.0",
+    "pretty-quick": "^4.2.2",
+    "simple-git-hooks": "^2.13.1"
   }
 }
