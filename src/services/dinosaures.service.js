@@ -1,9 +1,24 @@
 import { Op } from "sequelize";
-import { DinosaureNotFoundError } from "../custom-errors/dinosaures.error";
+import {
+  DinoAlreadyExistError,
+  DinosaureNotFoundError,
+} from "../custom-errors/dinosaures.error";
 import db from "../database/index.js";
 
 const dinoService = {
-  create: async () => {},
+  create: async (data) => {
+    const existing_dino = await db.Dinosaures.findOne({
+      where: {
+        name: data.name,
+      },
+    });
+    if (existing_dino) {
+      throw new DinoAlreadyExistError();
+    }
+
+    const newDino = await db.Dinosaures.create(data);
+    return newDino;
+  },
   getAll: async (filter, pagination) => {
     const where = {};
 
@@ -48,7 +63,6 @@ const dinoService = {
 
     await dinosaure.destroy();
   },
-  getAll: async () => {},
   getById: async () => {},
 };
 
