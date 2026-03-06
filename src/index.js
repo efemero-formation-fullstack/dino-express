@@ -18,6 +18,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
 
 console.log("coucou");
+app.use(router);
+
 
 app.listen(APP_PORT, () => {
   console.log(`Web API available at http://localhost:${APP_PORT}`);
