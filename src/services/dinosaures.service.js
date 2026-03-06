@@ -1,4 +1,5 @@
 import { Op } from "sequelize";
+import db from "../database/index.js";
 
 const dinoService = {
   create: async () => {},
@@ -25,7 +26,19 @@ const dinoService = {
         order.push(["name", pagination.orders.name]);
       }
     }
-    const dinosaures = await debug.Dinosaures.findAll();
+    const dinosaures = await debug.Dinosaures.findAll({
+      where,
+      offset: pagination.offset,
+      limit: pagination.limit,
+      order,
+      include: [
+        {
+          model: db.Zones,
+          as: "zone",
+        },
+      ],
+    });
+    return dinosaures;
   },
   getById: async () => {},
 };
